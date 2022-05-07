@@ -2,11 +2,12 @@ class Solution {
     public int threeSumClosest(int[] nums, int target) {
         Arrays.sort(nums);
         int min = nums[0] + nums[1] + nums[nums.length - 1];
+        int l, r, threeSum;
         for(int i = 0; i < nums.length; i++){
-            int l = i+1;
-            int r = nums.length - 1;
+            l = i+1;
+            r = nums.length - 1;
             while(l < r){
-                int threeSum = nums[i] + nums[l] + nums[r];
+                threeSum = nums[i] + nums[l] + nums[r];
                 if (threeSum == target)
                     return threeSum;
                 else if (threeSum > target)
