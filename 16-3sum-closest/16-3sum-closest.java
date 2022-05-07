@@ -14,7 +14,7 @@ class Solution {
                 else
                     l++;
                 
-                if(Math.min(Math.abs(threeSum - target), Math.abs(target - threeSum)) < Math.min(Math.abs(min - target), Math.abs(target - min)))
+                if(Math.abs(threeSum - target) < Math.abs(min - target))
                     min = threeSum;
             }
         }
