@@ -15,7 +15,10 @@ class Solution {
         String s = index + "()" + total;
         if (map.containsKey(s))
             return map.get(s);
-        map.put(s, backtrack(nums, target, index+1, total + nums[index]) + backtrack(nums, target, index+1, total - nums[index]));
+        int count = 0;
+        count += backtrack(nums, target, index+1, total + nums[index]);
+        count += backtrack(nums, target, index+1, total - nums[index]);
+        map.put(s, count);
         
         return map.get(s);
             
