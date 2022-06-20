@@ -14,19 +14,20 @@
  * }
  */
 class Solution {
-  public List<Integer> rightSideView(TreeNode root) {
-    List<Integer> ans = new ArrayList<>();
-    dfs(root, 0, ans);
-    return ans;
-  }
-
-  private void dfs(TreeNode root, int depth, List<Integer> ans) {
-    if (root == null)
-      return;
-
-    if (depth == ans.size())
-      ans.add(root.val);
-    dfs(root.right, depth + 1, ans);
-    dfs(root.left, depth + 1, ans);
-  }
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> ans = new ArrayList<>();
+        dfs(ans, 0, root);
+        return ans;
+    }
+    
+    public void dfs(List<Integer> ans, int depth, TreeNode root){
+        if (root == null)
+            return;
+        
+        if (depth == ans.size())
+            ans.add(root.val);
+        
+        dfs(ans, depth + 1, root.right);
+        dfs(ans, depth + 1, root.left);
+    }
 }
