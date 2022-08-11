@@ -6,7 +6,7 @@ class Solution {
             int mid = (start + end)/2;
             if (arr[mid] > arr[mid + 1])
                 end = mid;
-            else if (arr[mid] < arr[mid + 1])
+            else
                 start = mid + 1;
         }
         
