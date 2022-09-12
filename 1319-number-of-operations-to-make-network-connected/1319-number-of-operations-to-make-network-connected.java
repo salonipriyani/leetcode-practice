@@ -14,7 +14,7 @@ class Solution {
             adj.get(connection[1]).add(connection[0]);
         }
         
-        //DFS
+        //2. DFS to get number of components
         boolean[] visited = new boolean[n];
         for (int i = 0; i< n; i++){
             if(!visited[i]){
@@ -22,11 +22,14 @@ class Solution {
                 c++;
             }
         }
+        //find no. of redundancies
+        //if c = 1, r = e - (n-1) -> edges minus number of edges required to connect n nodes
         
         int r = e - ((n-1)-(c-1)); //number of redundancies
         
         if (r < c-1)
             return -1;
+        //number of edges required to join the components
         return c-1;
     }
     
