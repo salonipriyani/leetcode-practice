@@ -1,38 +1,38 @@
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
         
-        if (s1.length() > s2.length())
-            return false;
-        int[] s1Char = new int[26];
-        int[] s2Char = new int[26];
-        
-        for(int i = 0; i < s1.length(); i++){
-            s1Char[s1.charAt(i) - 'a']++;
-            s2Char[s2.charAt(i) - 'a']++;
+        //1. create character freq map for the pattern
+        Map<Character, Integer> freqMap = new HashMap<>();
+        for (int i = 0; i < s1.length(); i++){
+            char curr = s1.charAt(i);
+            freqMap.put(curr, freqMap.getOrDefault(curr, 0) + 1);
         }
-        int windowStart = 0;
-        int windowEnd = s1.length();
-        while(windowEnd < s2.length()){
-            if (matches(s1Char, s2Char))
+        
+        int windowStart = 0, matched = 0;
+        for (int windowEnd = 0; windowEnd < s2.length(); windowEnd++){
+            char curr = s2.charAt(windowEnd);
+            if (freqMap.containsKey(curr)){
+                freqMap.put(curr, freqMap.get(curr) - 1);
+                if (freqMap.get(curr) == 0)
+                    matched++;
+            }
+            
+            if (matched == freqMap.size())
                 return true;
-            
-            s2Char[s2.charAt(windowStart) - 'a']--;
-            s2Char[s2.charAt(windowEnd) - 'a']++;
-            
-            windowStart++;
-            windowEnd++;
+        
+            if (windowEnd -windowStart + 1 >= s1.length()){
+                char left = s2.charAt(windowStart);
+                windowStart++;
+                if (freqMap.containsKey(left)){
+                    if (freqMap.get(left) == 0)
+                        matched--;
+                    freqMap.put(left, freqMap.get(left) + 1);
+                }
+                
+            }
         }
         
-        if (matches(s1Char, s2Char))
-            return true;
         return false;
     }
     
-    private boolean matches(int[] s1Char, int[] s2Char){
-        for(int i = 0; i < 26; i++){
-            if (s1Char[i] != s2Char[i])
-                return false;
-        }
-        return true;
-    }
 }
