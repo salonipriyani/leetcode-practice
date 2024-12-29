@@ -1,22 +1,20 @@
 class Solution:
     def countSubstrings(self, s: str) -> int:
-        n =  len(s)
-        res = 0
-        # if n is odd
-        for i in range(n):
-            l = r = i
-            while l >= 0 and r < n and s[l] == s[r]:
-                res += 1
-                l -= 1
-                r += 1
-            
-            l = i
-            r = i + 1
-            while l >= 0 and r < n and s[l] == s[r]:
-                res += 1
-                l -= 1
-                r += 1
+        n = len(s)
 
+
+        dp = [[False] * n for _ in range(n)]
+
+        res = 0
+
+        for i in range(n - 1, -1, -1):
+            for j in range(i, n):
+                if s[i] == s[j] and (j - i + 1 <= 3 or dp[i + 1][j - 1] == True):
+                    dp[i][j] = True
+        
+                    res += 1
         return res
+
+
 
         
