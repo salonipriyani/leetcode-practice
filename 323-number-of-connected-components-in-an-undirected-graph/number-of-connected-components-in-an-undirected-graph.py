@@ -5,17 +5,24 @@ class Solution:
             adj_list[n1].append(n2)
             adj_list[n2].append(n1)
         visited = set()
-        def dfs(node):
-            for nei in adj_list[node]:
-                if nei not in visited:
-                    visited.add(nei)
-                    dfs(nei)
+        
+        def bfs(node):
+            q = deque()
+            q.append(node)
+            visited.add(node)
+            while q:
+                curr = q.popleft()
+                for nei in adj_list[curr]:
+                    if nei not in visited:
+                        visited.add(nei)
+                        q.append(nei)
+
 
         count = 0
         for i in range(n):
             print(i)
             if i not in visited:
                 visited.add(i)
-                dfs(i)
+                bfs(i)
                 count += 1
         return count
