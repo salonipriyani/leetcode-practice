@@ -7,4 +7,4 @@ class Solution:
                 res_list = num_list[:i + 1]
                 break
         
-        return "" if len(res_list) == 0 else "".join(res_list)
+        return "".join(res_list)
