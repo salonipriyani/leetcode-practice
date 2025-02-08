@@ -9,12 +9,14 @@ class Solution:
         sum_incl = 0
 
         def dfs(node):
-            sum = 0
             if not node:
                 return 0
-            if node.val >= low and node.val <= high:
-                sum += node.val
-            sum += dfs(node.left)
-            sum += dfs(node.right)
-            return sum
+            
+            if node.val < low:
+                return dfs(node.right)  # Prune left subtree
+            if node.val > high:
+                return dfs(node.left)   # Prune right subtree
+            
+            return node.val + dfs(node.left) + dfs(node.right)
+        
         return dfs(root)
