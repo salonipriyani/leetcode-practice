@@ -9,7 +9,7 @@ class Solution:
 
             if curr_start <= res[len(res) - 1][1]:
                 res[len(res) - 1][1] = max(res[len(res) - 1][1], curr_end)
-                res[len(res) - 1][0] = min(res[len(res) - 1][0], curr_start)
+                #res[len(res) - 1][0] = min(res[len(res) - 1][0], curr_start)
             else:
                 res.append([curr_start, curr_end])
         
