@@ -1,12 +1,18 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        q = deque()
+        q.append(0)
+        seen = set()
+        dict_set = set(wordDict)
+        while q:
+            i = q.popleft()
+            if i == len(s):
+                return True
+            for j in range(i + 1, len(s) + 1):
+                if j in seen:
+                    continue
+                if s[i : j] in dict_set:
+                    q.append(j)
+                    seen.add(j)
         
-        dp = [False] * (len(s) + 1)
-        dp[len(s)] = True
-        for i in range(len(s) - 1, -1, -1):
-            for w in wordDict:
-                if i + len(w) <= len(s) and s[i : i + len(w)] == w:
-                    dp[i] = dp[i + len(w)]
-                if dp[i]:
-                    break
-        return dp[0]
+        return False
