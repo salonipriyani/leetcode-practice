@@ -1,20 +1,21 @@
 class Solution:
     def countSubstrings(self, s: str) -> int:
-        n = len(s)
-
-
-        dp = [[False] * n for _ in range(n)]
+        def expand(l, r):
+            num_palindromes = 0
+            while l >= 0 and r < len(s):
+                if s[l] != s[r]:
+                    break
+                l -= 1
+                r += 1
+                num_palindromes += 1
+            return num_palindromes
+        
 
         res = 0
+        for i in range(len(s)):
+            # odd
+            res += expand(i, i)
 
-        for i in range(n - 1, -1, -1):
-            for j in range(i, n):
-                if s[i] == s[j] and (j - i + 1 <= 3 or dp[i + 1][j - 1] == True):
-                    dp[i][j] = True
-        
-                    res += 1
+            #even 
+            res += expand(i, i + 1)
         return res
-
-
-
-        
