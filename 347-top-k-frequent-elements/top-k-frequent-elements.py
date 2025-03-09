@@ -6,12 +6,11 @@ class Solution:
                 freq_map[num] = 0
             freq_map[num] += 1
         
-        topk = []
+        minheap = []
         for num, freq in freq_map.items():
-            heapq.heappush(topk, [freq, num])
-            if len(topk) > k:
-                heapq.heappop(topk)
-        topk_elements = []
-        while topk:
-            topk_elements.append(heapq.heappop(topk)[1])
-        return topk_elements
+            heapq.heappush(minheap, [freq, num])
+
+            if len(minheap) > k:
+                heapq.heappop(minheap)
+
+        return [item[1] for item in minheap]
