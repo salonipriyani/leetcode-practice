@@ -15,13 +15,12 @@ class Solution:
         
         prev = head
         curr = head.next
-
         while True:
             if prev.val <= insertVal <= curr.val:
                 prev.next = Node(insertVal, curr)
                 return head
-            elif prev.val > curr.val:
-                if insertVal < curr.val or insertVal > prev.val:
+            if prev.val > curr.val:
+                if insertVal > prev.val or insertVal < curr.val:
                     prev.next = Node(insertVal, curr)
                     return head
         
@@ -32,5 +31,4 @@ class Solution:
         
         prev.next = Node(insertVal, curr)
         return head
-        
-            
+             
