@@ -10,4 +10,5 @@ class Solution:
                 q.append((r + 1, c))
             if c + 1 < len(nums[r]):
                 q.append((r, c + 1))
+        
         return res
