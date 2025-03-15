@@ -8,8 +8,7 @@ class Solution:
                 if len(stack) == 0:
                     break
                 dist = i - stack[-1] - 1
-                ht = min(height[i],height[stack[-1]]) - height[top]
-                
+                ht = min(height[i], height[stack[-1]]) - height[top]
                 res += (dist * ht)
             stack.append(i)
         return res
