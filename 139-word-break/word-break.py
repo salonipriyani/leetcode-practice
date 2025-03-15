@@ -1,9 +1,10 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         q = deque()
-        q.append(0)
         seen = set()
-        dict_set = set(wordDict)
+        wordset = set(wordDict)
+        
+        q.append(0)
         while q:
             i = q.popleft()
             if i == len(s):
@@ -11,8 +12,7 @@ class Solution:
             for j in range(i + 1, len(s) + 1):
                 if j in seen:
                     continue
-                if s[i : j] in dict_set:
+                elif s[i : j] in wordset:
                     q.append(j)
                     seen.add(j)
-        
         return False
