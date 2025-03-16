@@ -15,7 +15,7 @@ class Solution:
         for num in nums:
             potential_outlier = total - 2 * num
 
-            if potential_outlier in numset and (potential_outlier != num or num_map[num] > 1):
+            if potential_outlier in num_map and (potential_outlier != num or num_map[num] > 1):
                 largest = max(largest, potential_outlier)
 
         return largest
