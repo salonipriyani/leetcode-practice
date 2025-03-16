@@ -21,4 +21,4 @@ class Solution:
                 p2 -= 1
             else:
                 curr += 1
-            
+        
