@@ -4,7 +4,8 @@ class Solution:
         j = 0
         start = -1
         while i < len(haystack):
-            if haystack[i] == needle[0]:
+
+            if needle[0] == haystack[i]:
                 haystack_st = i
                 j = 0
                 while i < len(haystack) and j < len(needle) and haystack[i] == needle[j]:
@@ -17,4 +18,4 @@ class Solution:
                     i = haystack_st + 1
             else:
                 i += 1
-        return start 
+        return start
