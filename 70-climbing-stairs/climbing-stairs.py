@@ -1,14 +1,10 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        store = [-1] * n
-        def recurse(i):
-            if i == n:
-                return 1
-            if i > n:
-                return 0
-            if store[i] != -1:
-                return store[i]
-            store[i] = recurse(i + 1) + recurse(i + 2)
-            return store[i]
-
-        return recurse(0)
+        store = [0] * (n + 1)
+        if n < 3: return n
+        store[1] = 1
+        store[2] = 2
+        for i in range(3, n + 1):
+            store[i] = store[i - 1] + store[i - 2]
+        
+        return store[n]
