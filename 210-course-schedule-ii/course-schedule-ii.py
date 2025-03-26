@@ -17,7 +17,7 @@ class Solution:
             cycle.add(crs)
             for pre in adj_ls[crs]:
                 if not dfs(pre):
-                    return []
+                    return False
             visited.add(crs)
             cycle.remove(crs)
             order.append(crs)
