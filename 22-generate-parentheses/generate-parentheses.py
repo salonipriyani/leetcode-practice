@@ -1,23 +1,21 @@
-class PStr:
-    def __init__(self, openb, closeb, str):
-        self.openb = openb
-        self.closeb = closeb
-        self.str = str
-
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        q = deque()
-        q.append(PStr(0, 0, ""))
-        res= []
-        while len(q) > 0:
+        stack = []
+        res = []
+
+        def backtrack(open_num, close_num):
+            if open_num == close_num == n:
+                res.append("".join(stack))
+                return
+
+            if open_num < n:
+                stack.append("(")
+                backtrack(open_num + 1, close_num)
+                stack.pop()
             
-            curr_pstr = q.popleft()
-            print(curr_pstr.str)
-            if curr_pstr.openb < n:
-                q.append(PStr(curr_pstr.openb + 1, curr_pstr.closeb, curr_pstr.str + "("))
-            if curr_pstr.closeb < curr_pstr.openb:
-                q.append(PStr(curr_pstr.openb, curr_pstr.closeb + 1, curr_pstr.str + ")"))
-            if curr_pstr.closeb == n:
-                res.append(curr_pstr.str)
+            if close_num < open_num:
+                stack.append(")")
+                backtrack(open_num, close_num + 1)
+                stack.pop()
+        backtrack(0, 0)
         return res
-            
