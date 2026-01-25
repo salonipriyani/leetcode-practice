@@ -4,7 +4,7 @@ class Solution:
 
         for i in range(1, len(nums)):
             l_prod[i] = l_prod[i - 1] * nums[i - 1]
-        print(l_prod)
+        
         r = 1
         for i in range(len(nums) - 2, -1, -1):
             l_prod[i] *= (nums[i + 1] * r)
