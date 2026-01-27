@@ -1,18 +1,17 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        map = {}
-        def recurse(amount):
+        memo = {}
+        def dfs(amount):
             if amount == 0:
                 return 0
-            if amount in map:
-                return map[amount]
+            if amount in memo:
+                return memo[amount]
             res = float('inf')
             for coin in coins:
                 if amount - coin >= 0:
-                    res = min(res, 1 + recurse(amount - coin))
-            map[amount] = res
-            return res
-            
-
-        res = recurse(amount)
-        return -1 if res == float('inf') else res
+                    res = min(res, 1 + dfs(amount - coin))
+            memo[amount] = res
+            return memo[amount]
+        min_count = dfs(amount)
+        return min_count if min_count != float('inf') else -1
+        
