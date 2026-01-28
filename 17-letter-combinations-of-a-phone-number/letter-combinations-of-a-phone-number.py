@@ -12,15 +12,16 @@ class Solution:
         }
 
         res = []
-
-        def dfs(i , curStr):
+        def dfs(i , path):
             if i == len(digits):
-                res.append(curStr)
+                res.append(''.join(path))
                 return
 
             for char in digits_to_letters[digits[i]]:
-                dfs(i + 1, curStr + char)
+                path.append(char)
+                dfs(i + 1, path)
+                path.pop()
         
         if digits:
-            dfs(0, "")
+            dfs(0, [])
         return res
